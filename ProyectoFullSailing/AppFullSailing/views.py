@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from AppFullSailing.models import Alumno
-from AppFullSailing.forms import AlumnosFormulario
+from AppFullSailing.models import Alumno, Profesor, Examen
+from AppFullSailing.forms import AlumnosFormulario, ProfesoresFormulario, ExamenesFormulario
 
 
 # Create your views here.
@@ -11,13 +11,10 @@ def inicio(request):
 def Alumnos(request):
     return render(request, 'Alumnos.html')
 
-def Embarcacion(request):
-    return render(request,'Embarcacion.html')
-
 def Profesores(request):
     return render (request, 'Profesores.html')
 
-def Examen(request):
+def Examenes(request):
     return render(request, 'Examen.html')
 
 def alumnosFormulario(request):
@@ -41,5 +38,50 @@ def alumnosFormulario(request):
         miFormulario = AlumnosFormulario()
     
     return render(request, 'AlumnosFormulario.html', {'miFormulario': miFormulario})
+
+def profesoresFormulario(request):
+    print("llegue1")
+    if request.method == 'POST': 
+        print("llegue2")
+
+        miFormulario = ProfesoresFormulario(request.POST) 
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion= miFormulario.cleaned_data
+            print("llegue3")
+            
+            profesores =Profesor(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'])
+            profesores.save()
+            
+            return render(request, 'inicio.html')
+    else:
+        print('llegue4')
+        miFormulario = ProfesoresFormulario()
+    
+    return render(request, 'ProfesoresFormulario.html', {'miFormulario': miFormulario})
+
+def examenesFormulario(request):
+    print("llegue1")
+    if request.method == 'POST': 
+        print("llegue2")
+
+        miFormulario = ExamenesFormulario(request.POST) 
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion= miFormulario.cleaned_data
+            print("llegue3")
+            
+            examenes =Examen(embarcacion=informacion['embarcacion'], profe_examinador=informacion['profe_examinador'], fecha_examen=informacion['fecha_examen'])
+            examenes.save()
+            
+            return render(request, 'inicio.html')
+    else:
+        print('llegue4')
+        miFormulario = ExamenesFormulario()
+    
+    return render(request, 'ExamenesFormulario.html', {'miFormulario': miFormulario})
+
 
 
