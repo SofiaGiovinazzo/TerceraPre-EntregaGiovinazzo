@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from AppFullSailing.forms import alumnosFormulario
+from AppFullSailing.models import Alumno
+from AppFullSailing.forms import AlumnosFormulario
 
 
 # Create your views here.
@@ -20,19 +21,24 @@ def Examen(request):
     return render(request, 'Examen.html')
 
 def alumnosFormulario(request):
-    if request.method == 'POST':
-        miFormulario = alumnosFormulario(request.post) 
+    print("llegue1")
+    if request.method == 'POST': 
+        print("llegue2")
+
+        miFormulario = AlumnosFormulario(request.POST) 
         print(miFormulario)
 
         if miFormulario.is_valid:
             informacion= miFormulario.cleaned_data
+            print("llegue3")
             
-            Alumnos = Alumnos(nombre=informacion['Nombre'], apellido=informacion['Apellido'], edad=informacion['Edad'], email=informacion['Email'])
-            Alumnos.save()
+            alumnos = Alumno(nombre=informacion['nombre'], apellido=informacion['apellido'], edad=informacion['edad'], email=informacion['email'])
+            alumnos.save()
             
             return render(request, 'inicio.html')
-   # else:
-    #    miFormulario = AlumnosFormulario()
+    else:
+        print('llegue4')
+        miFormulario = AlumnosFormulario()
     
     return render(request, 'AlumnosFormulario.html', {'miFormulario': miFormulario})
 
