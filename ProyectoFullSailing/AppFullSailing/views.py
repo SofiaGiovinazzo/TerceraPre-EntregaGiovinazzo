@@ -12,7 +12,7 @@ def inicio(request):
 #def Alumnos(request):
     return render(request, 'Alumnos.html')
 
-def Profesores(request):
+#def Profesores(request):
     return render (request, 'Profesores.html')
 
 #def Examenes(request):
@@ -36,7 +36,7 @@ def Alumnos(request):
     
     return render(request, 'Alumnos.html', {'miFormulario': miFormulario})
 
-def profesoresFormulario(request):
+def Profesores(request):
     if request.method == 'POST': 
 
         miFormulario = ProfesoresFormulario(request.POST) 
@@ -52,7 +52,7 @@ def profesoresFormulario(request):
     else:
         miFormulario = ProfesoresFormulario()
     
-    return render(request, 'ProfesoresFormulario.html', {'miFormulario': miFormulario})
+    return render(request, 'Profesores.html', {'miFormulario': miFormulario})
 
 def Examenes(request):
     if request.method == 'POST': 
@@ -70,7 +70,7 @@ def Examenes(request):
     else:
         miFormulario = ExamenesFormulario()
     
-    return render(request, 'ExamenesFormulario.html', {'miFormulario': miFormulario})
+    return render(request, 'Examenes.html', {'miFormulario': miFormulario})
 
 def controlFecha_examen(request):
     return render(request,'controlFecha_examen.html' )
@@ -80,9 +80,9 @@ def buscar(request):
 
         #respuesta = f'esta es la fecha buscada: {request.GET["fecha_examen"]}'
         fecha_examen= request.GET['fecha_examen']
-        alumno= Examen.objects.filter(fecha_examen__icontains=fecha_examen)
+        examenes= Examen.objects.filter(fecha_examen__icontains=fecha_examen)
 
-        return render(request, 'inicio.html', {'alumno': alumno, 'Fecha examen': fecha_examen})
+        return render(request, 'inicio.html', {'Examenes': examenes, 'fecha_examen': fecha_examen})
     
     else:
         respuesta = "No se encontraron los datos."

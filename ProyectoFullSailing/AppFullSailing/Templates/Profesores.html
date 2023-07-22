@@ -5,7 +5,16 @@
 {% block contenidoQueCambia %}
 
     <!--En este lugar va lo que cambia y se lo asocia a la vista-->
-    <h1>Profesores</h1>
-    <p>info de Profesores</p>
+    {% if miFormulario.errors %}
+        <p style="color: red;">Datos incorrectos</p>
+    {% endif %}
+
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{ miFormulario.as_table }}
+        </table>
+
+        <input type="submit", value="Enviar">
+    </form>
 
 {% endblock %}

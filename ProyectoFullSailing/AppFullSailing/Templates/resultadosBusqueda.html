@@ -9,11 +9,11 @@
     {% endif %}
     <p>Estoy buscando la fecha: {{fecha_examen}}</p>
 
-    {% if alumno %}
+    {% if Examenes %}
         <ul>
-            {% for alu in alumno %}
-                <li> {{alumno.Examen}}</li>
-                <li> {{alumno.fecha_examen}}</li>
+            {% for alu in Examenes %}
+                <li> {{alu.profe_examinador}}</li>
+                <li> {{alu.fecha_examen}}</li>
             {% endfor %}
 
         </ul>
