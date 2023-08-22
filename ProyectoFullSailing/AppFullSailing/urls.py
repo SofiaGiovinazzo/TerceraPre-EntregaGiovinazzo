@@ -27,7 +27,7 @@ urlpatterns = [
     path('borrar/<int:pk>/', views.ExamenDelete.as_view(), name='Delete'),  # Corrige el patrón de URL
     path('editar/<int:pk>/', views.ExamenUpdate.as_view(), name='Edit'),  # Corrige el patrón de URL
     path('nuevo/', views.ExamenCreacion.as_view(), name='New'),  # Corrige el patrón de URL
-    path('login', views.login_required, name='Login'),
+    path('login', views.login_request, name='Login'),
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name='logout.html'), name='Logout'),
     path('editarPerfil', views.editarPerfil, name='EditarPerfil'),

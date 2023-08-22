@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-    <h1>Bienvenido/a a Full Sailing - Centro Nautico</h1>
-    <p>Aquí podrá acceder a toda la informacion del centro</p>
+    <h1>Bienvenido/a a Full Sailing </h1>
+    <p>AQUÍ PODRÁ ACCEDER A TODA LA INFORMACIÓN DEL CENTRO NAUTICO</p>
     
     {% if Examenes %}
         <p>Estoy buscando la fecha: {{fecha_examen}}</p>
@@ -15,7 +15,7 @@
             {% endfor %}     
         </ul>
     {% else %}
-        <p> -No hay examenes en esa fecha</p>
+        <p> Por el momento, no hay examenes registrados</p>
         
     {% endif %}
 

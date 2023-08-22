@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def inicio(request):
@@ -23,6 +24,7 @@ def inicio(request):
 #def Examenes(request):
     return render(request, 'Examen.html')
 
+@login_required
 def Alumnos(request):
     if request.method == 'POST': 
 
@@ -41,6 +43,7 @@ def Alumnos(request):
     
     return render(request, 'Alumnos.html', {'miFormulario': miFormulario})
 
+@login_required
 def Profesores(request):
     if request.method == 'POST': 
 
@@ -59,6 +62,7 @@ def Profesores(request):
     
     return render(request, 'Profesores.html', {'miFormulario': miFormulario})
 
+@login_required
 def Examenes(request):
     if request.method == 'POST': 
 
@@ -77,6 +81,7 @@ def Examenes(request):
     
     return render(request, 'Examenes.html', {'miFormulario': miFormulario})
 
+@login_required
 def controlFecha_examen(request):
     return render(request,'controlFecha_examen.html' )
 
@@ -196,7 +201,7 @@ class ExamenDelete(DeleteView):
     model = Examen
     success_url = 'AppFullSailing/examen/list'
 
-def login_required(request):
+def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data = request.POST)
 
@@ -232,7 +237,7 @@ def register(request):
     else:
         #form = UserCreationForm()
         form = UserRegisterForm()
-    return render(request, 'registro.html', {'form':form})
+    return render(request, 'register.html', {'form':form})
 
 @login_required
 def editarPerfil(request):
