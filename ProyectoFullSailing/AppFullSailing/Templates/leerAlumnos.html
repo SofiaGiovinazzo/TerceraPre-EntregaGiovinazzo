@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alumnos</title>
+</head>
+<body>
+    {% for p in alumnos %}
+        <li>{{p}}</li>
+        <button>
+            <a href="{% url 'EliminarAlumno' p.nombre %}">Eliminar</a> 
+            <a href="{% url 'EditarAlumno' p.nombre %}">Editar</a>
+        </button>
+    {% endfor %}
+    <br>    
+    <a href="Alumnos"> Agregar nuevo alumno</a>
+    
+</body>
+</html>
