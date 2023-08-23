@@ -1,8 +1,18 @@
-{% extends 'padre.html' %}
+{% extends 'padre_admin.html' %}
 
 {% load static %}
 
 {% block contenidoQueCambia %}
+
+    <a class="btn btn-primary" href="#" role="button">Users</a>
+
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Administrador
+        </a>
+        <ul class="dropdown-menu">
+        <li><a href="{% url 'List' %}">Proximos examenes</a></li>
+
     <h1>Bienvenido/a a Full Sailing </h1>
     <p>AQUÍ PODRÁ ACCEDER A TODA LA INFORMACIÓN DEL CENTRO NAUTICO</p>
     <div class="text-center">
@@ -24,5 +34,4 @@
 
     <p style="color: red;">{{respuesta}}</p>
 {% endblock %}
-
 

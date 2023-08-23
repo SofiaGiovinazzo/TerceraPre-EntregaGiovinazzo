@@ -1,0 +1,32 @@
+{% extends 'padre_admin.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Examenes</title>
+</head>
+<body>
+    <h1>Examenes de Full Sailing</h1>
+    <ul>
+        {% for examen in object_list %}
+
+            <li>
+                <p>FECHA: {{ examen.fecha_examen }}</p>
+                <p>
+                    <a href="{% url 'Detail' examen.id %}">Ver</a>
+                    <a href="{% url 'Edit' examen.id %}">Editar</a>
+                    <a href="{% url 'Delete' examen.id %}">Borrar</a>
+
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}    
+</body>
+</html>

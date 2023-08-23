@@ -18,6 +18,9 @@ class ExamenesFormulario(forms.Form):
     profe_examinador = forms.CharField(max_length=30)
     fecha_examen = forms.DateField()
 
+class AvatarFormulario(forms.Form):
+    avatar = forms.ImageField(label='Cargar Avatar', required=False)
+
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label= 'Contraseña', widget=forms.PasswordInput)
@@ -34,10 +37,11 @@ class UserEditForm(UserCreationForm):
     password2 = forms.CharField(label='Repetir contraseña', widget=forms.PasswordInput)
     last_name = forms.CharField()
     first_name = forms.CharField()
+    avatar = forms.ImageField(label='Avatar', required=False)
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'last_name', 'first_name']
+        fields = ['email', 'password1', 'password2', 'last_name', 'first_name', 'avatar']
         help_texts = {k:"" for k in fields}
 
 

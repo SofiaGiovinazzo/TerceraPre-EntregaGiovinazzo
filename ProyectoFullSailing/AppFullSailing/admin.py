@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Alumno)
 admin.site.register(Profesor)
 admin.site.register(Examen)
+admin.site.register(Avatar)
